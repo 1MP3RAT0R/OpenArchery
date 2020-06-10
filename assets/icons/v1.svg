@@ -1,0 +1,58 @@
+<svg height=400 width=400>
+        <rect 
+            x="0" y="0" 
+            height="400" width="400"
+            rx="30" ry="30"
+            style="fill: white;"
+        />
+        <circle
+            cx="200" cy="200"
+            r="190"
+            style="fill: black;"
+        />
+        <circle
+            cx="200" cy="200"
+            r="180"
+            style="fill: red;"
+        />
+        <circle
+            cx="200" cy="200"
+            r="140"
+            style="fill: black;"
+        />
+        <circle
+            cx="200" cy="200"
+            r="130"
+            style="fill: white;"
+        />
+        <circle
+            cx="200" cy="200"
+            r="90"
+            style="fill: black;"
+        />
+        <circle
+            cx="200" cy="200"
+            r="80"
+            style="fill: red;"
+        />
+        <circle 
+            cx="200" cy="200"
+            r="40"
+            style="fill: black;"
+        />
+        <circle 
+            cx="200" cy="200"
+            r="30"
+            style="fill: gold;"
+        />
+        <rect 
+            x="15" y="195"
+            height="10" width="370"
+            style="fill: black;"
+        />
+        <rect 
+            x="195" y="15"
+            height="370" width="10"
+            style="fill: black;"
+        />
+    </svg>
