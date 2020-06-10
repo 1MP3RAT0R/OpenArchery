@@ -1,5 +1,6 @@
 export default {
-    headerBackground: '#289fbf',
+    //headerBackground: '#289fbf',
+    headerBackground: '#059af7',
     headerText: '#ffffff',
     listItemBackground: '#ebe8e8',
     listItemText: '#080808',

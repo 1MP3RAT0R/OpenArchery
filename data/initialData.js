@@ -255,7 +255,8 @@ export default {
             targetCount: 2,
             pointageName: "Pointage Name",
             pointageUUID: "uuid",
-            status: "begonnen",
+            status: "begun",
+            currentRound: 2,
             shooters: [
                 {
                     uuid: "uuid",

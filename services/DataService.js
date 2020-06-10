@@ -122,12 +122,12 @@ const DataService = {
         if (result !== null) {
             return JSON.parse(result);
         } else {
-            return {};
+            return null;
         }
     },
 
     setUser: async (user) => {
-        AsyncStorage.setItem(storageKeys.user, JSON.stringify(user));
+        return await AsyncStorage.setItem(storageKeys.user, JSON.stringify(user));
     }
 }
 

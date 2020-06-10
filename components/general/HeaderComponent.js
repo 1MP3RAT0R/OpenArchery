@@ -11,15 +11,11 @@ const HeaderComponent = props => {
         <View>
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => props.changeScreen(props.backScreen)} activeOpacity={0.9}>
-                    <Image 
+                    <Image
                         style={styles.button}
                         source={require('../../assets/images/back-button.png')}
                     />
                 </TouchableOpacity>
-                <Button
-                    title={strings.backButton}
-                    onPress={() => props.changeScreen(props.backScreen)}
-                />
                 <Text style={styles.title}>{props.title}</Text>
             </View>
         </View>
@@ -36,10 +32,15 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         paddingLeft: 30
     },
-    button: {
+    title: {
         fontSize: 25,
         paddingLeft: 30,
         color: colors.headerText
+    },
+    button: {
+        flex: 1,
+        width: 25,
+        resizeMode: 'contain'
     }
 });
 

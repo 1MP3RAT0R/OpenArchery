@@ -6,8 +6,29 @@ import screens from '../constants/screens';
 import AppButton from '../components/general/AppButton';
 import DataService from '../services/DataService';
 import RoundListItem from '../components/round/RoundListItem';
+import UserFirstCreateComponent from '../components/users/UserFirstCreateComponent';
+import RoundDetailsComponent from '../components/round/RoundDetailsComponent';
 
 const MainScreen = props => {
+
+    const [userSet, setUserSet] = useState(false);
+    const [firstQuery, setFirstQuery] = useState(true);
+
+    const [roundDetailsModal, setRoundDetailsModal] = useState(false);
+    const [currentRound, setCurrentRound] = useState({});
+
+    const userAddedHandler = () => {
+        setUserSet(false);
+    }
+
+    if (firstQuery) {
+        DataService.getUser().then(result => {
+            if (result == null) {
+                setUserSet(true);
+            }
+        })
+        setFirstQuery(false);
+    }
 
     const [roundsList, setRoundsList] = useState([]);
 
@@ -16,11 +37,17 @@ const MainScreen = props => {
     })
 
     const roundListTouchHandler = (touchedRound) => {
-        console.log(touchedRound);
+        setCurrentRound(touchedRound);
+        setRoundDetailsModal(true);
+    }
+
+    const closeRoundDetailsHandler = () => {
+        setRoundDetailsModal(false);
     }
 
     return (
         <View style={styles.screen}>
+            <UserFirstCreateComponent visibleStatus={userSet} onAdded={userAddedHandler} />
             <View style={styles.halfWrapperTop}>
                 <View style={styles.startButtonWrapper}>
                     <AppButton
@@ -36,6 +63,11 @@ const MainScreen = props => {
                 </View>
             </View>
             <View style={styles.halfWrapperBottom}>
+                <RoundDetailsComponent
+                    visible={roundDetailsModal}
+                    onClose={closeRoundDetailsHandler}
+                    round={currentRound}
+                />
                 <Text style={styles.listTitle}>{strings.mainScreenListTitle}</Text>
                 <ScrollView>
                     {roundsList.map(round => <RoundListItem key={round.UUID} round={round} onTouched={roundListTouchHandler} />)}

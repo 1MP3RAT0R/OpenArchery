@@ -6,6 +6,10 @@ export default {
     closeButton: "Schließen",
     deleteButton: "Löschen",
 
+    //add yourself
+    userAddHimselfLabel: "Bitte tragen Sie ihren namen ein:",
+    userAddHimselfButton: "Starten",
+
     //pointage Details
     pointageArrowsTag: "Pfeile:",
     pointageZonesTag: "Zonen:",
@@ -41,5 +45,10 @@ export default {
     addPointagePointsTitle: "Punkte Konfigurieren",
     arrowTitle: "Pfeil",
     zoneInputTag: "Zone",
-    saveNewPointageButton: "Wertung speichern"
+    saveNewPointageButton: "Wertung speichern",
+
+    //rounds
+    roundStatusBegun: 'Begonnen',
+    roundStatusDone: 'Beendet',
+    roundStatusAborted: 'Abgebrochen'
 }
