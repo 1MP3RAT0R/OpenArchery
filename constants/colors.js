@@ -6,5 +6,6 @@ export default {
     listItemText: '#080808',
     buttonBackground: '#059af7',
     buttonText: '#ffffff',
-    denyButtonBackground: '#de2121'
+    denyButtonBackground: '#de2121',
+    selectedPointageBackground: '#ebe8e8'
 }

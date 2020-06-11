@@ -5,6 +5,7 @@ export default {
     abortButton: "Abbrechen",
     closeButton: "Schließen",
     deleteButton: "Löschen",
+    theShooterIsMeTag: "Ich",
 
     //add yourself
     userAddHimselfLabel: "Bitte tragen Sie ihren namen ein:",
@@ -47,8 +48,26 @@ export default {
     zoneInputTag: "Zone",
     saveNewPointageButton: "Wertung speichern",
 
-    //rounds
+    //rounds Status
     roundStatusBegun: 'Begonnen',
     roundStatusDone: 'Beendet',
-    roundStatusAborted: 'Abgebrochen'
+    roundStatusAborted: 'Abgebrochen',
+
+    //round add
+    addRoundScreenTitle: "Runde Hinzufügen",
+    addRoundGeneralBlockTitle: "Grundlegendes",
+    targetCountInputTag: "Ziele:",
+    pointageSelectionTag: "Wertung auswählen:",
+    noPointageSelected: "Nichts ausgewählt",
+    pointageSelectionHeader: "Wertungen",
+    addRoundShooterBlockTitle: "Schützen",
+    userHimselfToggleTag: "Selber mitschießen",
+    noShooterInListMessage: "kein Schütze ausgewählt",
+    shooterSelectionHeader: "Schütze auswählen",
+    createShooterButton: "Schütze erstellen",
+    createShooterNameTag: "Name des neuen Schützen:",
+    newRoundNoPointageSelectedError: "Bitte eine Wertung auswählen!",
+    newRoundNoShootersError: "Bitte mindestens einen Schützen hinzufügen!",
+    newRoundNoTargetsError: "Bitte die Anzahl der Ziele angeben!",
+    newRoundAddShooterButton: "Schütze hinzufügen"
 }

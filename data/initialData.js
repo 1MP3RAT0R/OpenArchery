@@ -260,11 +260,13 @@ export default {
             shooters: [
                 {
                     uuid: "uuid",
-                    name: "Bernd"
+                    name: "Bernd",
+                    pointSum: 32
                 },
                 {
                     uuid: "uuid",
-                    name: "Guido"
+                    name: "Guido",
+                    pointSum: 34
                 }
             ],
             targets: [
@@ -276,6 +278,7 @@ export default {
                             shooterName: "Guido",
                             shots: [
                                 {
+                                    arrow: 1,
                                     zone: 1,
                                     points: 20
                                 }
@@ -286,6 +289,7 @@ export default {
                             shooterName: "Bernd",
                             shots: [
                                 {
+                                    arrow: 1,
                                     zone: 2,
                                     points: 16
                                 }
@@ -298,8 +302,10 @@ export default {
                     hits: [
                         {
                             shooter: "uuid",
+                            shooterName: "Guido",
                             shots: [
                                 {
+                                    arrow: 2,
                                     zone: 1,
                                     points: 14
                                 }
@@ -307,8 +313,10 @@ export default {
                         },
                         {
                             shooter: "uuid",
+                            shooterName: "Bernd",
                             shots: [
                                 {
+                                    arrow: 1,
                                     zone: 2,
                                     points: 16
                                 }
