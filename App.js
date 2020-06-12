@@ -10,22 +10,23 @@ import StartScreen from './screens/round/StartScreen';
 import ConfigurePointsScreen from './screens/pointage/ConfigurePointsScreen';
 import AsyncStorage from '@react-native-community/async-storage';
 import AddPointageScreen from './screens/pointage/AddPointageScreen';
+import UserScreen from './screens/users/UserScreen';
 
 
 export default function App() {
 
-  //AsyncStorage.clear();
+  const [firstExec, setFirstExec] = useState(true);
 
-  DataService.getPointages().then(result => {
-    if (result.length == 0) {
-      DataService.addPointages(initialData.pointages);
-    }
-  });
-  DataService.getRounds().then(result => {
-    if (result.length == 0) {
-      DataService.addRounds(initialData.rounds);
-    }
-  });
+  if (firstExec) {
+    //AsyncStorage.clear();
+
+    DataService.getPointages().then(result => {
+      if (result.length == 0) {
+        DataService.addPointages(initialData.pointages);
+      }
+    });
+    setFirstExec(false);
+  }
 
   const [currentView, setCurrentView] = useState(screens.main);
 
@@ -37,6 +38,8 @@ export default function App() {
     content = <ConfigurePointsScreen changeScreen={setCurrentView} />
   } else if (currentView == screens.addPointage) {
     content = <AddPointageScreen changeScreen={setCurrentView} />
+  } else if (currentView == screens.userConfigs) {
+    content = <UserScreen changeScreen={setCurrentView} />
   }
 
   return (

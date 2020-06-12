@@ -6,7 +6,7 @@ import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
 
-const AppButton = props => {
+const AppButtonSuccess = props => {
     return (
 
         <TouchableOpacity onPress={() => { props.onPress() }} activeOpacity={0.9}>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.buttonBackground,
+        backgroundColor: colors.buttonSuccessBackground,
         borderRadius: 2,
         padding: 8
     },
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AppButton;
+export default AppButtonSuccess;

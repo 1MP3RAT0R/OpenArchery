@@ -14,6 +14,7 @@ import DataService from '../../services/DataService';
 import AppButton from '../../components/general/AppButton';
 import colors from '../../constants/colors';
 import ShooterList from '../../components/users/ShooterList';
+import AppButtonSuccess from '../../components/general/AppButtonSuccess';
 
 const StartScreen = props => {
 
@@ -40,8 +41,9 @@ const StartScreen = props => {
     }
 
     const addShooter = (shooterObj) => {
-        shooterObj.pointSum = 0;
-        setShootersArray(shootersArray.concat([shooterObj]));
+        let tmpShooter = JSON.parse(JSON.stringify(shooterObj));
+        tmpShooter.pointSum = 0;
+        setShootersArray(shootersArray.concat([tmpShooter]));
     }
 
     const toggleUser = () => {
@@ -55,8 +57,6 @@ const StartScreen = props => {
     }
 
     const createRound = () => {
-
-        console.log(pointage, shootersArray, targetCount);
 
         if (targetCount > 0) {
             if (pointage.UUID !== noUUID) {
@@ -96,11 +96,11 @@ const StartScreen = props => {
                     const newRound = {
                         UUID: uuid.v4(),
                         timestamp: timestamp,
-                        targetCount: targetCount,
-                        pointageName: pointage.name,
-                        pointageUUID: pointage.UUID,
+                        duration: "",
+                        targetCount: parseInt(targetCount),
+                        pointage: pointage,
                         status: roundStates.begun,
-                        currentRound: 1,
+                        completed: 0,
                         shooters: shootersArray,
                         targets: targetsArray
                     }
@@ -133,7 +133,6 @@ const StartScreen = props => {
     const changeTargetCountHandler = (text) => { setTargetCount(text) }
 
     const pointageChangePressed = (pointage) => {
-        console.log(pointage);
         setPointage(pointage);
         hidePointageModalHandler();
     }
@@ -168,6 +167,7 @@ const StartScreen = props => {
         }
         if (!alreadyAddedShooter) {
             let shootersArrayTMP = shootersArray;
+            newShooter.pointSum = 0;
             shootersArrayTMP.push(newShooter);
             setShootersArray(shootersArrayTMP);
         }
@@ -232,7 +232,7 @@ const StartScreen = props => {
                                 onPress={showAddShooterModalHandler}
                             />
                         </View>
-                        <NewRoundAddShooterComponent 
+                        <NewRoundAddShooterComponent
                             visible={addShooterModal}
                             onClose={hideAddShooterModalHandler}
                             onSelected={addShooterHandler}
@@ -246,10 +246,12 @@ const StartScreen = props => {
                         </View>
                     </View>
                     <Text>{errorMessage}</Text>
-                    <AppButton
-                        title="save"
-                        onPress={createRound}
-                    />
+                    <View style={styles.saveButtonWrapper}>
+                        <AppButtonSuccess
+                            title="save"
+                            onPress={createRound}
+                        />
+                    </View>
                 </ScrollView>
             </View>
         </View>
@@ -311,6 +313,9 @@ const styles = StyleSheet.create({
     addShooterButtonWrapper: {
         paddingTop: 10,
         paddingBottom: 10
+    },
+    saveButtonWrapper: {
+        padding: 5
     }
 });
 

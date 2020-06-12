@@ -8,6 +8,7 @@ import DataService from '../services/DataService';
 import RoundListItem from '../components/round/RoundListItem';
 import UserFirstCreateComponent from '../components/users/UserFirstCreateComponent';
 import RoundDetailsComponent from '../components/round/RoundDetailsComponent';
+import AppButtonSuccess from '../components/general/AppButtonSuccess';
 
 const MainScreen = props => {
 
@@ -50,7 +51,7 @@ const MainScreen = props => {
             <UserFirstCreateComponent visibleStatus={userSet} onAdded={userAddedHandler} />
             <View style={styles.halfWrapperTop}>
                 <View style={styles.startButtonWrapper}>
-                    <AppButton
+                    <AppButtonSuccess
                         title={strings.mainScreenStartButton}
                         onPress={() => props.changeScreen(screens.startEvent)}
                     />
@@ -59,6 +60,12 @@ const MainScreen = props => {
                     <AppButton
                         title={strings.mainScreenConfigurePointsButton}
                         onPress={() => props.changeScreen(screens.configurePoints)}
+                    />
+                </View>
+                <View style={styles.configureUsersButtonWrapper}>
+                    <AppButton
+                        title={strings.mainScreenConfigureShootersButton}
+                        onPress={() => props.changeScreen(screens.userConfigs)}
                     />
                 </View>
             </View>
@@ -98,6 +105,9 @@ const styles = StyleSheet.create({
         padding: 5
     },
     configurePointsButtonWrapper: {
+        padding: 5
+    },
+    configureUsersButtonWrapper: {
         padding: 5
     },
     listTitle: {

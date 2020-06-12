@@ -69,7 +69,7 @@ const DataService = {
             if (result !== null) {
                 result = JSON.parse(result);
                 result.forEach(shooter => {
-                    if (round.UUID != UUID) {
+                    if (shooter.UUID != UUID) {
                         newContent.push(shooter);
                     }
                 });
