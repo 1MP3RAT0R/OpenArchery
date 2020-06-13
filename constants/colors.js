@@ -8,5 +8,12 @@ export default {
     buttonText: '#ffffff',
     denyButtonBackground: '#de2121',
     buttonSuccessBackground: '#00bd3f',
-    selectedPointageBackground: '#ebe8e8'
+    selectedPointageBackground: '#ebe8e8',
+    errorMessage: '#de2121',
+    roundInputButtonsBackground: '#cccccc',
+    roundShooterRowBackground: '#cccccc',
+    roundShooterSelectedBorder: '#000000',
+    roundZoneSelectedBorder: '#000000',
+    roundShooterSelectedBackground: '#059af7',
+    roundZoneSelectedBackground: '#059af7'
 }

@@ -80,13 +80,15 @@ const StartScreen = props => {
 
                         let targetobj = {};
                         targetobj.number = j + 1;
+                        targetobj.completed = false;
                         targetobj.hits = [];
 
                         for (let s = 0; s < shootersArray.length; s++) {
                             targetobj.hits.push({
                                 shooter: shootersArray[s].UUID,
                                 shooterName: shootersArray[s].name,
-                                shots: []
+                                shots: [],
+                                completed: false
                             })
                         }
 
@@ -96,7 +98,7 @@ const StartScreen = props => {
                     const newRound = {
                         UUID: uuid.v4(),
                         timestamp: timestamp,
-                        duration: "",
+                        duration: " - ",
                         targetCount: parseInt(targetCount),
                         pointage: pointage,
                         status: roundStates.begun,
@@ -106,7 +108,9 @@ const StartScreen = props => {
                     }
 
                     DataService.addRounds([newRound]).then(result => {
-                        props.changeScreen(screens.main);
+                        DataService.getRounds().then(roundsObj => {
+                            props.startRound(roundsObj.find(roundObj => newRound.UUID == roundObj.UUID));
+                        })
                     })
                 } else {
                     setErrorMessage(strings.newRoundNoShootersError);
@@ -182,75 +186,77 @@ const StartScreen = props => {
             />
             <View style={styles.contentWrapper}>
                 <ScrollView>
-                    <View style={styles.inputBlock}>
-                        <Text style={styles.inputBlockTitle}>{strings.addRoundGeneralBlockTitle}</Text>
-                        <View style={styles.inputRow}>
-                            <Text style={styles.inputLabel}>{strings.targetCountInputTag}</Text>
-                            <TextInput
-                                style={styles.inputField}
-                                keyboardType='numeric'
-                                onChangeText={value => changeTargetCountHandler(value)}
-                                value={targetCount.toString()}
+                    <View style={styles.contentInnerWrapper}>
+                        <View style={styles.inputBlock}>
+                            <Text style={styles.inputBlockTitle}>{strings.addRoundGeneralBlockTitle}</Text>
+                            <View style={styles.inputRow}>
+                                <Text style={styles.inputLabel}>{strings.targetCountInputTag}</Text>
+                                <TextInput
+                                    style={styles.inputField}
+                                    keyboardType='numeric'
+                                    onChangeText={value => changeTargetCountHandler(value)}
+                                    value={targetCount.toString()}
+                                />
+                            </View>
+                            <View style={styles.inputColumn}>
+                                <Text style={styles.inputLabel}>{strings.pointageSelectionTag}</Text>
+                                <TouchableOpacity
+                                    style={styles.pointageItemWrapper}
+                                    onPress={() => showPointageModalHandler()}
+                                    activeOpacity={0.9}
+                                >
+                                    <View style={styles.pointageItem}>
+                                        <Text style={styles.pointageItemName}>{pointage.name}</Text>
+                                        <Image
+                                            style={styles.changePointageIcon}
+                                            source={require('../../assets/images/next-button-black.png')}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                                <NewRoundSelectPointageComponent
+                                    pointages={pointagesList}
+                                    visible={selectPointageModal}
+                                    onClose={hidePointageModalHandler}
+                                    onSelected={pointageChangePressed}
+                                    shooterList={shootersArray}
+                                />
+                            </View>
+                        </View>
+                        <View style={styles.inputBlock}>
+                            <Text style={styles.inputBlockTitle}>{strings.addRoundShooterBlockTitle}</Text>
+                            <View style={styles.inputRow}>
+                                <Text style={styles.inputLabel}>{strings.userHimselfToggleTag}</Text>
+                                <Switch
+                                    onValueChange={toggleUser}
+                                    value={userToggle}
+                                />
+                            </View>
+                            <View style={styles.addShooterButtonWrapper}>
+                                <AppButton
+                                    title={strings.newRoundAddShooterButton}
+                                    onPress={showAddShooterModalHandler}
+                                />
+                            </View>
+                            <NewRoundAddShooterComponent
+                                visible={addShooterModal}
+                                onClose={hideAddShooterModalHandler}
+                                onSelected={addShooterHandler}
+                            />
+                            <View style={styles.shooterList}>
+                                <ShooterList
+                                    shooters={shootersArray}
+                                    user={userObj}
+                                    onDelete={deleteShooterHandler}
+                                />
+                            </View>
+                        </View>
+                        <Text>{errorMessage}</Text>
+                        <View style={styles.saveButtonWrapper}>
+                            <AppButtonSuccess
+                                title={strings.startNewRound}
+                                onPress={createRound}
                             />
                         </View>
-                        <View style={styles.inputColumn}>
-                            <Text style={styles.inputLabel}>{strings.pointageSelectionTag}</Text>
-                            <TouchableOpacity
-                                style={styles.pointageItemWrapper}
-                                onPress={() => showPointageModalHandler()}
-                                activeOpacity={0.9}
-                            >
-                                <View style={styles.pointageItem}>
-                                    <Text style={styles.pointageItemName}>{pointage.name}</Text>
-                                    <Image
-                                        style={styles.changePointageIcon}
-                                        source={require('../../assets/images/next-button-black.png')}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                            <NewRoundSelectPointageComponent
-                                pointages={pointagesList}
-                                visible={selectPointageModal}
-                                onClose={hidePointageModalHandler}
-                                onSelected={pointageChangePressed}
-                                shooterList={shootersArray}
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.inputBlock}>
-                        <Text style={styles.inputBlockTitle}>{strings.addRoundShooterBlockTitle}</Text>
-                        <View style={styles.inputRow}>
-                            <Text style={styles.inputLabel}>{strings.userHimselfToggleTag}</Text>
-                            <Switch
-                                onValueChange={toggleUser}
-                                value={userToggle}
-                            />
-                        </View>
-                        <View style={styles.addShooterButtonWrapper}>
-                            <AppButton
-                                title={strings.newRoundAddShooterButton}
-                                onPress={showAddShooterModalHandler}
-                            />
-                        </View>
-                        <NewRoundAddShooterComponent
-                            visible={addShooterModal}
-                            onClose={hideAddShooterModalHandler}
-                            onSelected={addShooterHandler}
-                        />
-                        <View style={styles.shooterList}>
-                            <ShooterList
-                                shooters={shootersArray}
-                                user={userObj}
-                                onDelete={deleteShooterHandler}
-                            />
-                        </View>
-                    </View>
-                    <Text>{errorMessage}</Text>
-                    <View style={styles.saveButtonWrapper}>
-                        <AppButtonSuccess
-                            title="save"
-                            onPress={createRound}
-                        />
                     </View>
                 </ScrollView>
             </View>
@@ -261,6 +267,9 @@ const StartScreen = props => {
 const styles = StyleSheet.create({
     contentWrapper: {
         padding: 20
+    },
+    contentInnerWrapper: {
+        paddingBottom: 200
     },
     inputRow: {
         flexDirection: 'row',

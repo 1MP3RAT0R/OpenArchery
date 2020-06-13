@@ -20,10 +20,16 @@ const AddPointageScreen = props => {
     const [configurePointageModal, setConfigurePointageModal] = useState(false);
     const [arrowsArray, setArrowsArray] = useState([]);
     const [zonesArray, setZonesArray] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     let pointageData = [];
 
-    const changePointName = (text) => {setPointageName(text)};
+    const changePointName = (text) => {
+        if (text.length > 15) {
+            text = text.substring(0, 15);
+        }
+        setPointageName(text) 
+    };
 
     const changePointArrows = (value) => {
         setPointageArrows(value);
@@ -39,16 +45,19 @@ const AddPointageScreen = props => {
         }
     };
 
-    const changePointFirstArrow = (value) => {setPointageFirstArrow(value)};
+    const changePointFirstArrow = (value) => { setPointageFirstArrow(value) };
 
     const configurePointageHandler = () => {
-        if (pointageArrows == 0) {
-            changePointArrows(1);
+        if (pointageArrows > 0 && pointageArrows < 5) {
+            if (pointageZones > 0 && pointageZones < 5) {
+                setErrorMessage('');
+                setConfigurePointageModal(true);
+            } else {
+                setErrorMessage(strings.pointageZonesErrorMessage);
+            }
+        } else {
+            setErrorMessage(strings.pointageArrowsErrorMessage);
         }
-        if (pointageZones == 0) {
-            changePointZones(1);
-        }
-        setConfigurePointageModal(true);
     }
 
     const reportedData = (data) => {
@@ -75,6 +84,25 @@ const AddPointageScreen = props => {
         )
     }
 
+    let footer = (
+        <AppButton
+            title={strings.addPointageContinueButton}
+            onPress={() => configurePointageHandler()}
+        />
+    );
+
+    if (errorMessage != '') {
+        footer = (
+            <View>
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+                <AppButton
+                    title={strings.addPointageContinueButton}
+                    onPress={() => configurePointageHandler()}
+                />
+            </View>
+        );
+    }
+
     return (
         <View>
             <HeaderComponent
@@ -86,41 +114,38 @@ const AddPointageScreen = props => {
                 <ScrollView>
                     <View style={styles.inputRow}>
                         <Text style={styles.inputTag}>{strings.inputTagName}</Text>
-                        <TextInput 
-                            style={styles.input} 
-                            onChangeText={text => changePointName(text)} 
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={text => changePointName(text)}
                             value={pointageName}
                         />
                     </View>
                     <View style={styles.inputRow}>
                         <Text style={styles.inputTag}>{strings.inputTagArrows}</Text>
-                        <TextInput 
-                            style={styles.input} 
+                        <TextInput
+                            style={styles.input}
                             keyboardType='numeric'
-                            onChangeText={value => changePointArrows(value)} 
+                            onChangeText={value => changePointArrows(value)}
                             value={pointageArrows.toString()}
                         />
                     </View>
                     <View style={styles.inputRow}>
                         <Text style={styles.inputTag}>{strings.inputTagZones}</Text>
-                        <TextInput 
-                            style={styles.input} 
+                        <TextInput
+                            style={styles.input}
                             keyboardType='numeric'
-                            onChangeText={value => changePointZones(value)} 
+                            onChangeText={value => changePointZones(value)}
                             value={pointageZones.toString()}
                         />
                     </View>
                     <View style={styles.inputRow}>
                         <Text style={styles.inputTag}>{strings.inputTagFirstArrow}</Text>
                         <Switch
-                            onValueChange={value => changePointFirstArrow(value)} 
+                            onValueChange={value => changePointFirstArrow(value)}
                             value={pointageFirstArrow}
                         />
                     </View>
-                    <AppButton 
-                        title={strings.addPointageContinueButton}
-                        onPress={() => configurePointageHandler()}
-                    />
+                    {footer}
                 </ScrollView>
                 <PointageInputComponent
                     visible={configurePointageModal}
@@ -137,7 +162,7 @@ const AddPointageScreen = props => {
 
 const styles = StyleSheet.create({
     content: {
-        padding: 20
+        padding: 30
     },
     input: {
         borderColor: 'grey',
@@ -150,8 +175,13 @@ const styles = StyleSheet.create({
     },
     inputRow: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         paddingBottom: 20
+    },
+    errorMessage: {
+        paddingBottom: 10,
+        fontSize: 15,
+        color: colors.errorMessage
     }
 });
 

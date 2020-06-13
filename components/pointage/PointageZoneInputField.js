@@ -29,10 +29,10 @@ const PointageZoneInputField = props => {
 const styles = StyleSheet.create({
     inputRow: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-between'
     },
     zoneInputTag: {
-
+        fontSize: 20
     },
     inputField: {
         borderBottomWidth: 1,

@@ -30,6 +30,11 @@ const RoundDetailsComponent = props => {
         })
     }
 
+    const continueRoundButtonHadler = () => {
+        props.onContinueRound(props.round);
+        props.onClose();
+    }
+
     let status = '';
 
     if (props.round.status == roundStates.begun) {
@@ -42,6 +47,11 @@ const RoundDetailsComponent = props => {
 
     let buttons = (
         <View>
+            <DeleteConfirmationComponent
+                visibleStatus={deleteRoundModal}
+                deleteRoundHandler={deleteRoundHandler}
+                backPress={hideDeleteRoundModal}
+            />
             <View style={styles.backButton}>
                 <AppButton title={strings.backButton} onPress={() => props.onClose()} />
             </View>
@@ -60,7 +70,7 @@ const RoundDetailsComponent = props => {
                     backPress={hideDeleteRoundModal}
                 />
                 <View style={styles.backButton}>
-                    <AppButtonSuccess title={strings.continueRoundButton} onPress={() => props.onClose()} />
+                    <AppButtonSuccess title={strings.continueRoundButton} onPress={() => continueRoundButtonHadler()} />
                 </View>
                 <View style={styles.backButton}>
                     <AppButton title={strings.backButton} onPress={() => props.onClose()} />
@@ -93,6 +103,10 @@ const RoundDetailsComponent = props => {
                     <View style={styles.item}>
                         <Text style={styles.itemText}>{strings.statusLabel}</Text>
                         <Text style={styles.itemText}>{status}</Text>
+                    </View>
+                    <View style={styles.item}>
+                        <Text style={styles.itemText}>{strings.durationLabel}</Text>
+                        <Text style={styles.itemText}>{props.round.duration}</Text>
                     </View>
                     <View style={styles.item}>
                         <Text style={styles.itemText}>{strings.pointeageUsedLabel}</Text>

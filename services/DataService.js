@@ -41,6 +41,23 @@ const DataService = {
         })
     },
 
+    updateRound: async (roundObject) => {
+        await AsyncStorage.getItem(storageKeys.rounds).then(result => {
+            let newContent = [];
+            if (result !== null) {
+                result = JSON.parse(result);
+                result.forEach(round => {
+                    if (round.UUID != roundObject.UUID) {
+                        newContent.push(round);
+                    } else {
+                        newContent.push(roundObject);
+                    }
+                });
+            }
+            AsyncStorage.setItem(storageKeys.rounds, JSON.stringify(newContent));
+        })
+    },
+
     // load, delete and save SHOOTER data
 
     addShooters: async (newUser) => {

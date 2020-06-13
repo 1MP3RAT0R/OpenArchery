@@ -25,6 +25,9 @@ const UserFirstCreateComponent = props => {
     }
 
     const changeShooterNameHandler = (text) => {
+        if (text.length > 10) {
+            text = text.substring(0, 10);
+        }
         setShooterName(text);
     }
 

@@ -11,6 +11,7 @@ import ConfigurePointsScreen from './screens/pointage/ConfigurePointsScreen';
 import AsyncStorage from '@react-native-community/async-storage';
 import AddPointageScreen from './screens/pointage/AddPointageScreen';
 import UserScreen from './screens/users/UserScreen';
+import RoundScreen from './screens/round/RoundScreen';
 
 
 export default function App() {
@@ -29,17 +30,25 @@ export default function App() {
   }
 
   const [currentView, setCurrentView] = useState(screens.main);
+  const [currentRound, setCurrentRound] = useState({});
 
-  let content = <MainScreen changeScreen={setCurrentView} />;
+  const startRound = (roundObj) => {
+    setCurrentRound(roundObj);
+    setCurrentView(screens.roundInProgess);
+  }
+
+  let content = <MainScreen changeScreen={setCurrentView} startRound={startRound} />;
 
   if (currentView == screens.startEvent) {
-    content = <StartScreen changeScreen={setCurrentView} />;
+    content = <StartScreen changeScreen={setCurrentView} startRound={startRound} />;
   } else if (currentView == screens.configurePoints) {
     content = <ConfigurePointsScreen changeScreen={setCurrentView} />
   } else if (currentView == screens.addPointage) {
     content = <AddPointageScreen changeScreen={setCurrentView} />
   } else if (currentView == screens.userConfigs) {
     content = <UserScreen changeScreen={setCurrentView} />
+  } else if (currentView == screens.roundInProgess) {
+    content = <RoundScreen changeScreen={setCurrentView} round={currentRound} />
   }
 
   return (

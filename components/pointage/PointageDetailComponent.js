@@ -62,13 +62,23 @@ const PointageDetailComponent = props => {
             <ScrollView style={styles.content}>
                 <Text style={styles.title}>{props.currentItem.name}</Text>
                 <View style={styles.generalInfos}>
-                    <Text style={styles.sectionTitle}>{strings.generalInfosTitle}</Text>
-                    <Text style={styles.attributeTag}>{strings.pointageArrowsTag} {props.currentItem.arrows}</Text>
-                    <Text style={styles.attributeTag}>{strings.pointageZonesTag} {props.currentItem.hitZones}</Text>
+                    <View style={styles.sectionTitleWrapper}>
+                        <Text style={styles.sectionTitle}>{strings.generalInfosTitle}</Text>
+                    </View>
+                    <View style={styles.attributeTupel}>
+                        <Text style={styles.attributeTag}>{strings.pointageArrowsTag}</Text>
+                        <Text style={styles.attributeTag}>{props.currentItem.arrows}</Text>
+                    </View>
+                    <View style={styles.attributeTupel}>
+                        <Text style={styles.attributeTag}>{strings.pointageZonesTag}</Text>
+                        <Text style={styles.attributeTag}>{props.currentItem.hitZones}</Text>
+                    </View>
                     <Text style={styles.attributeTag}>{firstHitCountsContent}</Text>
                 </View>
                 <View>
-                    <Text style={styles.sectionTitle}>{strings.pointageShowTitle}</Text>
+                    <View style={styles.sectionTitleWrapper}>
+                        <Text style={styles.sectionTitle}>{strings.pointageShowTitle}</Text>
+                    </View>
                     {pointageDisplay}
                 </View>
                 <View style={styles.outerButtonWrapper}>
@@ -113,15 +123,27 @@ const styles = StyleSheet.create({
     },
     arrowTag: {
         padding: 5,
-        fontSize: 20
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     zoneWrapper: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-between',
+        alignContent: 'center',
+        paddingLeft: 20
     },
     zoneTag: {
         padding: 5,
         fontSize: 20
+    },
+    attributeTupel: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignContent: 'center'
+    },
+    sectionTitleWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 });
 

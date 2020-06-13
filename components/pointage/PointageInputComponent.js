@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     },
     pointsTitle: {
         fontSize: 25,
+        fontWeight: 'bold',
         paddingBottom: 10
     },
     saveButtonWrapper: {

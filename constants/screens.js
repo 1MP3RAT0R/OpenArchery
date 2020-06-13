@@ -3,5 +3,6 @@ export default {
     startEvent: 'start',
     configurePoints: 'points-config',
     addPointage: 'add-pointage',
-    userConfigs: 'user-configs'
+    userConfigs: 'user-configs',
+    roundInProgess: 'round-progress'
 }

@@ -11,6 +11,10 @@ export default {
     shotTargetsLabel: "Geschossene Ziele:",
     shootersHeaderLabel: "Schützen",
     pointeageUsedLabel: "Wertung:",
+    durationLabel: "Dauer",
+    abortRoundLabel: "Runde Abbrechen?",
+    yesButtonText: "JA",
+    noButtonText: "NEIN",
 
     //add yourself
     userAddHimselfLabel: "Bitte tragen Sie ihren namen ein:",
@@ -53,6 +57,8 @@ export default {
     arrowTitle: "Pfeil",
     zoneInputTag: "Zone",
     saveNewPointageButton: "Wertung speichern",
+    pointageArrowsErrorMessage: "Die Anzahl der Pfeile pro Ziel muss zwischen 1 und 4 liegen.",
+    pointageZonesErrorMessage: "Die Anzahl der Zonen pro Ziel muss zwischen 1 und 4 liegen.",
 
     //rounds Status
     roundStatusBegun: 'Begonnen',
@@ -61,6 +67,7 @@ export default {
 
     //round add
     addRoundScreenTitle: "Runde Hinzufügen",
+    startNewRound: "Runde Starten",
     addRoundGeneralBlockTitle: "Grundlegendes",
     targetCountInputTag: "Ziele:",
     pointageSelectionTag: "Wertung auswählen:",
@@ -80,5 +87,10 @@ export default {
 
     //configure shooters
     configureShootersScreenTitle: "Schützen bearbeiten",
-    deleteShooterTag: "Soll der Schütze gelöscht werden?"
+    deleteShooterTag: "Soll der Schütze gelöscht werden?",
+
+    //running round
+    abortRunningRound: "Runde abbrechen",
+    pauseRunningRound: "Runde Pausieren",
+    markRoundDoneButton: "Runde beenden"
 }

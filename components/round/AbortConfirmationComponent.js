@@ -11,22 +11,22 @@ import AppButton from '../general/AppButton';
 import AppButtonDeny from '../general/AppButtonDeny';
 import DataService from '../../services/DataService';
 
-const DeleteConfirmationComponent = props => {
+const AbortConfirmationComponent = props => {
     return (
         <Modal visible={props.visibleStatus} animationType='fade'>
             <View style={styles.screen}>
                 <View style={styles.wrapper}>
-                    <Text style={styles.label}>{strings.deleteRoundTag}</Text>
+                    <Text style={styles.label}>{strings.abortRoundLabel}</Text>
                 </View>
                 <View style={styles.wrapper}>
                     <AppButtonDeny
-                        title={strings.deleteButton}
-                        onPress={props.deleteRoundHandler}
+                        title={strings.yesButtonText}
+                        onPress={props.abortRoundHandler}
                     />
                 </View>
                 <View style={styles.wrapper}>
                     <AppButton
-                        title={strings.abortButton}
+                        title={strings.noButtonText}
                         onPress={props.backPress}
                     />
                 </View>
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DeleteConfirmationComponent;
+export default AbortConfirmationComponent;

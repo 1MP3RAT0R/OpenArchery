@@ -1,0 +1,61 @@
+{
+    "UUID": "initial-1",
+    "name": "Bärs Runde",
+    "arrows": 3,
+    "hitZones": 3,
+    "firstHitCounts": false,
+    "deletable": false,
+    "pointage": [
+        {
+            "arrow": 1,
+            "points": [
+                {
+                    "zone": 1,
+                    "points": 10
+                },
+                {
+                    "zone": 2,
+                    "points": 8
+                },
+                {
+                    "zone": 3,
+                    "points": 5
+                }
+            ]
+        },
+        {
+            "arrow": 2,
+            "points": [
+                {
+                    "zone": 1,
+                    "points": 10
+                },
+                {
+                    "zone": 2,
+                    "points": 8
+                },
+                {
+                    "zone": 3,
+                    "points": 5
+                }
+            ]
+        },
+        {
+            "arrow": 3,
+            "points": [
+                {
+                    "zone": 1,
+                    "points": 10
+                },
+                {
+                    "zone": 2,
+                    "points": 8
+                },
+                {
+                    "zone": 3,
+                    "points": 5
+                }
+            ]
+        }
+    ]
+}

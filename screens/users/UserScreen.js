@@ -19,7 +19,7 @@ const UserScreen = props => {
     const [knownShooters, setKnownShooters] = useState([]);
     const [createShooterModal, setCreateShooterModal] = useState(false);
     const [deleteShooterModal, setDeleteShooterModal] = useState(false);
-    const [selectedShooter, setSelectedShooter] = useState({ name: "not selected"})
+    const [selectedShooter, setSelectedShooter] = useState({ name: "not selected" })
 
     if (firstRound) {
         DataService.getShooters().then(result => {
@@ -77,28 +77,37 @@ const UserScreen = props => {
                 shooter={selectedShooter}
                 onDeleted={deletedShooterHandler}
             />
-            <ScrollView>
-                <View style={styles.content}>
-                    {knownShooters.map(shooterObject => (
-                        <ShooterListItem
-                            onTouched={shooterSelectedHandler}
-                            key={shooterObject.UUID}
-                            shooterItem={shooterObject}
-                        />))}
-                </View>
-            </ScrollView>
+            <View sstyle={styles.contentWrapper}>
+                <ScrollView>
+                    <View style={styles.content}>
+                        {knownShooters.map(shooterObject => (
+                            <ShooterListItem
+                                onTouched={shooterSelectedHandler}
+                                key={shooterObject.UUID}
+                                shooterItem={shooterObject}
+                            />))}
+                    </View>
+                </ScrollView>
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1
+    }, 
     buttonWrapper: {
         padding: 20
     },
+    contentWrapper: {
+        flex: 1
+    },
     content: {
+        flex: 1,
         paddingLeft: 20,
         paddingRight: 20,
-        paddingBottom: 50
+        paddingBottom: 190
     }
 });
 

@@ -46,6 +46,10 @@ const MainScreen = props => {
         setRoundDetailsModal(false);
     }
 
+    const startRound = (round) => {
+        props.startRound(JSON.parse(JSON.stringify(round)));
+    }
+
     return (
         <View style={styles.screen}>
             <UserFirstCreateComponent visibleStatus={userSet} onAdded={userAddedHandler} />
@@ -74,6 +78,7 @@ const MainScreen = props => {
                     visible={roundDetailsModal}
                     onClose={closeRoundDetailsHandler}
                     round={currentRound}
+                    onContinueRound={startRound}
                 />
                 <Text style={styles.listTitle}>{strings.mainScreenListTitle}</Text>
                 <ScrollView>

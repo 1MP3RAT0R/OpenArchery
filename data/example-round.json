@@ -1,0 +1,173 @@
+{
+    "UUID": "a258ef30-fbd1-4d94-a7ab-f6af0aa8b3c2",
+    "timestamp": "12.6.2020 14:46:53",
+    "duration": "",
+    "targetCount": 6,
+    "pointage": {
+        "UUID": "initial-2",
+        "name": "Jagdrunde (3P 3Z)",
+        "arrows": 3,
+        "hitZones": 3,
+        "firstHitCounts": true,
+        "deletable": false,
+        "pointage": [
+            {
+                "arrow": 1,
+                "points": [
+                    {
+                        "zone": 1,
+                        "points": 20
+                    },
+                    {
+                        "zone": 2,
+                        "points": 18
+                    },
+                    {
+                        "zone": 3,
+                        "points": 16
+                    }
+                ]
+            },
+            {
+                "arrow": 2,
+                "points": [
+                    {
+                        "zone": 1,
+                        "points": 14
+                    },
+                    {
+                        "zone": 2,
+                        "points": 12
+                    },
+                    {
+                        "zone": 3,
+                        "points": 10
+                    }
+                ]
+            },
+            {
+                "arrow": 3,
+                "points": [
+                    {
+                        "zone": 1,
+                        "points": 8
+                    },
+                    {
+                        "zone": 2,
+                        "points": 6
+                    },
+                    {
+                        "zone": 3,
+                        "points": 4
+                    }
+                ]
+            }
+        ]
+    },
+    "status": "begun",
+    "completed": 0,
+    "shooters": [
+        {
+            "UUID": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+            "name": "Me",
+            "pointSum": 0
+        },
+        {
+            "UUID": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+            "name": "Pakdldbs",
+            "pointSum": 0
+        }
+    ],
+    "targets": [
+        {
+            "number": 1,
+            "hits": [
+                {
+                    "shooter": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+                    "shooterName": "Me",
+                    "shots": []
+                },
+                {
+                    "shooter": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+                    "shooterName": "Pakdldbs",
+                    "shots": []
+                }
+            ]
+        },
+        {
+            "number": 2,
+            "hits": [
+                {
+                    "shooter": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+                    "shooterName": "Me",
+                    "shots": []
+                },
+                {
+                    "shooter": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+                    "shooterName": "Pakdldbs",
+                    "shots": []
+                }
+            ]
+        },
+        {
+            "number": 3,
+            "hits": [
+                {
+                    "shooter": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+                    "shooterName": "Me",
+                    "shots": []
+                },
+                {
+                    "shooter": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+                    "shooterName": "Pakdldbs",
+                    "shots": []
+                }
+            ]
+        },
+        {
+            "number": 4,
+            "hits": [
+                {
+                    "shooter": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+                    "shooterName": "Me",
+                    "shots": []
+                },
+                {
+                    "shooter": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+                    "shooterName": "Pakdldbs",
+                    "shots": []
+                }
+            ]
+        },
+        {
+            "number": 5,
+            "hits": [
+                {
+                    "shooter": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+                    "shooterName": "Me",
+                    "shots": []
+                },
+                {
+                    "shooter": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+                    "shooterName": "Pakdldbs",
+                    "shots": []
+                }
+            ]
+        },
+        {
+            "number": 6,
+            "hits": [
+                {
+                    "shooter": "763085a1-aad2-436b-bac3-f4ebbef59b85",
+                    "shooterName": "Me",
+                    "shots": []
+                },
+                {
+                    "shooter": "208bf371-f84d-45ae-95ba-d3da0c3e952f",
+                    "shooterName": "Pakdldbs",
+                    "shots": []
+                }
+            ]
+        }
+    ]
+}
