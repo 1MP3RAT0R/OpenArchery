@@ -14,27 +14,44 @@ import DataService from '../../services/DataService';
 const UserFirstCreateComponent = props => {
 
     const [userName, setUserName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const userAddHimselfHandler = () => {
-        DataService.setUser({
-            UUID: uuid.v4(),
-            name: userName
-        }).then(result => props.onAdded())
+        if (userName.length > 2) {
+            setErrorMessage('');
+            DataService.setUser({
+                UUID: uuid.v4(),
+                name: userName
+            }).then(result => props.onAdded())
+        } else {
+            setErrorMessage(strings.userAddHimselfErrorTooShort);
+        }
     }
 
     const changeUserNameHandler = (text) => {
         setUserName(text);
-    } 
+    }
+
+    let errorMessageBox = <View></View>;
+
+    if (errorMessage !== '') {
+        errorMessageBox = (
+            <View style={styles.errorMessageWrapper}>
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+            </View>
+        );
+    }
 
     return (
         <Modal visible={props.visibleStatus} animationType='fade'>
             <View style={styles.screen}>
                 <Text style={styles.label}>{strings.userAddHimselfLabel}</Text>
-                <TextInput 
-                    style={styles.input} 
-                    onChangeText={text => changeUserNameHandler(text)} 
+                <TextInput
+                    style={styles.input}
+                    onChangeText={text => changeUserNameHandler(text)}
                     value={userName}
                 />
+                {errorMessageBox}
                 <AppButton
                     title={strings.userAddHimselfButton}
                     onPress={userAddHimselfHandler}
@@ -50,7 +67,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignContent: 'center',
         justifyContent: 'center',
-        padding: 30
+        padding: 20
     },
     label: {
         fontSize: 20
@@ -59,7 +76,15 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         fontSize: 20,
-        margin: 5
+        marginBottom: 10,
+        marginTop: 10
+    },
+    errorMessageWrapper: {
+        paddingBottom: 10
+    },
+    errorMessage: {
+        fontSize: 20,
+        color: colors.errorMessage
     }
 });
 

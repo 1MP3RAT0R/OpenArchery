@@ -17,8 +17,9 @@ export default {
     noButtonText: "NEIN",
 
     //add yourself
-    userAddHimselfLabel: "Bitte tragen Sie ihren namen ein:",
+    userAddHimselfLabel: "Bitte tragen Sie Ihren Namen ein:",
     userAddHimselfButton: "Starten",
+    userAddHimselfErrorTooShort: "Der Nutzername ist zu kurz!",
 
     //pointage Details
     pointageArrowsTag: "Pfeile:",
