@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
         padding: 20
     },
     contentWrapper: {
-        flex: 1
+        flex: 1,
+        padding: 20
     },
     content: {
-        flex: 1,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 190

@@ -51,8 +51,7 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         alignContent: 'center',
-        justifyContent: 'center',
-        padding: 30
+        justifyContent: 'center'
     },
     label: {
         fontSize: 20
@@ -61,7 +60,9 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     wrapper: {
-        padding: 5
+        padding: 5,
+        paddingLeft: 20,
+        paddingRight: 20
     },
     nameWrapper: {
         padding: 10,

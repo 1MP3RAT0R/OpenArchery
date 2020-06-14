@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
         padding: 8
     },
     buttonText: {
-        color: colors.buttonText
+        color: colors.buttonText,
+        fontSize: 15
     }
 });
 
