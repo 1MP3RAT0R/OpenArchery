@@ -38,11 +38,13 @@ const UserFirstCreateComponent = props => {
                     <Text style={styles.label}>{strings.createShooterNameTag}</Text>
                 </View>
                 <View style={styles.wrapper}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={text => changeShooterNameHandler(text)}
-                        value={shooterName}
-                    />
+                    <View style={styles.inputWrapper}>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={text => changeShooterNameHandler(text)}
+                            value={shooterName}
+                        />
+                    </View>
                 </View>
                 <View style={styles.wrapper}>
                     <AppButton
@@ -66,20 +68,23 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         alignContent: 'center',
-        justifyContent: 'center',
-        padding: 30
+        justifyContent: 'center'
     },
     label: {
         fontSize: 20
     },
+    inputWrapper: {
+        paddingBottom: 5
+    },
     input: {
         borderBottomColor: 'black',
         borderBottomWidth: 1,
-        fontSize: 20,
-        margin: 5
+        fontSize: 20
     },
     wrapper: {
-        padding: 5
+        padding: 5,
+        paddingRight: 20,
+        paddingLeft: 20
     }
 });
 
