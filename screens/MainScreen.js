@@ -81,9 +81,11 @@ const MainScreen = props => {
                     onContinueRound={startRound}
                 />
                 <Text style={styles.listTitle}>{strings.mainScreenListTitle}</Text>
-                <ScrollView>
-                    {roundsList.map(round => <RoundListItem key={round.UUID} round={round} onTouched={roundListTouchHandler} />)}
-                </ScrollView>
+                <View style={styles.roundListWrapper}>
+                    <ScrollView>
+                        {roundsList.map(round => <RoundListItem key={round.UUID} round={round} onTouched={roundListTouchHandler} />)}
+                    </ScrollView>
+                </View>
             </View>
         </View>
     );
@@ -93,32 +95,40 @@ const styles = StyleSheet.create({
     screen: {
         width: '100%',
         height: '100%',
-        justifyContent: 'center',
-        padding: 30
+        justifyContent: 'center'
     },
     halfWrapperTop: {
         height: '40%',
         width: '100%',
         justifyContent: 'center',
+        padding: 20
     },
     halfWrapperBottom: {
-        height: '60%',
+        flex: 1,
         width: '100%',
         justifyContent: 'center'
     },
     startButtonWrapper: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     configurePointsButtonWrapper: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     configureUsersButtonWrapper: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     listTitle: {
         fontSize: 20,
-        padding: 5,
+        paddingLeft: 20,
+        padding: 10,
         fontWeight: 'bold'
+    },
+    roundListWrapper: {
+        flex: 1,
+        paddingBottom: 20
     }
 });
 

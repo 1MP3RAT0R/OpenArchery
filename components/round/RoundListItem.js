@@ -32,7 +32,9 @@ const RoundListItem = props => {
 const styles = StyleSheet.create({
     wrapper: {
         paddingTop: 5,
-        paddingBottom: 5
+        paddingBottom: 5,
+        paddingLeft: 20,
+        paddingRight: 20
     },
     listItem: {
         width: '100%',
