@@ -6,6 +6,7 @@ import uuid from 'react-native-uuid';
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 import AppButton from '../general/AppButton';
 import AppButtonDeny from '../general/AppButtonDeny';
@@ -70,12 +71,12 @@ const styles = StyleSheet.create({
         padding: 20
     },
     label: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     input: {
         borderBottomColor: 'black',
         borderBottomWidth: 1,
-        fontSize: 20,
+        fontSize: sizes.fonts.medium,
         marginBottom: 10,
         marginTop: 10
     },
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     errorMessage: {
-        fontSize: 20,
+        fontSize: sizes.fonts.medium,
         color: colors.errorMessage
     }
 });

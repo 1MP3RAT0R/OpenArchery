@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } fr
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 const HeaderComponent = props => {
     return (
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
         paddingLeft: 30
     },
     title: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         paddingLeft: 30,
         color: colors.headerText
     },

@@ -15,6 +15,7 @@ import AppButton from '../../components/general/AppButton';
 import colors from '../../constants/colors';
 import ShooterList from '../../components/users/ShooterList';
 import AppButtonSuccess from '../../components/general/AppButtonSuccess';
+import sizes from '../../constants/sizes';
 
 const StartScreen = props => {
 
@@ -275,27 +276,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignContent: 'center',
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     inputBlockTitle: {
-        fontSize: 25,
+        fontSize: sizes.fonts.large,
         fontWeight: 'bold',
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     inputLabel: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     inputBlock: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     inputField: {
         borderColor: 'grey',
         borderBottomWidth: 1,
-        fontSize: 20,
+        fontSize: sizes.fonts.medium,
         width: '50%'
     },
     inputColumn: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     pointageItemWrapper: {
         paddingTop: 10
@@ -303,7 +308,7 @@ const styles = StyleSheet.create({
     pointageItem: {
         backgroundColor: colors.selectedPointageBackground,
         borderRadius: 5,
-        padding: 15,
+        padding: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
@@ -313,7 +318,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     pointageItemName: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     shooterList: {
         paddingTop: 5,
@@ -324,7 +329,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     saveButtonWrapper: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     }
 });
 

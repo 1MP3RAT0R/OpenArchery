@@ -7,6 +7,7 @@ import uuid from 'react-native-uuid';
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 import HeaderComponent from '../../components/general/HeaderComponent';
 import AppButton from '../../components/general/AppButton';
@@ -28,7 +29,7 @@ const AddPointageScreen = props => {
         if (text.length > 15) {
             text = text.substring(0, 15);
         }
-        setPointageName(text) 
+        setPointageName(text)
     };
 
     const changePointArrows = (value) => {
@@ -48,15 +49,19 @@ const AddPointageScreen = props => {
     const changePointFirstArrow = (value) => { setPointageFirstArrow(value) };
 
     const configurePointageHandler = () => {
-        if (pointageArrows > 0 && pointageArrows < 5) {
-            if (pointageZones > 0 && pointageZones < 5) {
-                setErrorMessage('');
-                setConfigurePointageModal(true);
+        if (pointageName.length > 3) {
+            if (pointageArrows > 0 && pointageArrows < 5) {
+                if (pointageZones > 0 && pointageZones < 5) {
+                    setErrorMessage('');
+                    setConfigurePointageModal(true);
+                } else {
+                    setErrorMessage(strings.pointageZonesErrorMessage);
+                }
             } else {
-                setErrorMessage(strings.pointageZonesErrorMessage);
+                setErrorMessage(strings.pointageArrowsErrorMessage);
             }
         } else {
-            setErrorMessage(strings.pointageArrowsErrorMessage);
+            setErrorMessage(strings.pointageNameErrorMessage);
         }
     }
 
@@ -69,6 +74,14 @@ const AddPointageScreen = props => {
     }
 
     const saveNewPointage = () => {
+
+        let maxpoints = 0;
+        if (pointageFirstArrow) {
+            maxpoints = pointageData.find(arrow => arrow.arrow === 1).points.find(zone => zone.zone === 1).points;
+        } else {
+            maxpoints = pointageData.find(arrow => arrow.arrow === 1).points.find(zone => zone.zone === 1).points * pointageArrows;
+        }
+
         const pointageObject = {
             UUID: uuid.v4() + "-" + Math.random(),
             name: pointageName,
@@ -76,7 +89,8 @@ const AddPointageScreen = props => {
             hitZones: pointageZones,
             firstHitCounts: pointageFirstArrow,
             deletable: true,
-            pointage: pointageData
+            pointage: pointageData,
+            targetMaxPoints: maxpoints
         }
         setConfigurePointageModal(false);
         DataService.addPointages([pointageObject]).then(
@@ -154,6 +168,7 @@ const AddPointageScreen = props => {
                     reportData={reportedData}
                     arrowsArray={arrowsArray}
                     zonesArray={zonesArray}
+                    firstArrowCounts={pointageFirstArrow}
                 />
             </View>
         </View>
@@ -167,11 +182,11 @@ const styles = StyleSheet.create({
     input: {
         borderColor: 'grey',
         borderBottomWidth: 1,
-        fontSize: 20,
+        fontSize: sizes.fonts.medium,
         width: '50%'
     },
     inputTag: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     inputRow: {
         flexDirection: 'row',
@@ -180,7 +195,7 @@ const styles = StyleSheet.create({
     },
     errorMessage: {
         paddingBottom: 10,
-        fontSize: 15,
+        fontSize: sizes.fonts.medium,
         color: colors.errorMessage
     }
 });

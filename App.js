@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import AddPointageScreen from './screens/pointage/AddPointageScreen';
 import UserScreen from './screens/users/UserScreen';
 import RoundScreen from './screens/round/RoundScreen';
+import RoundStatisticsScreen from './screens/statistics/RoundStatisticsScreen';
 
 
 export default function App() {
@@ -37,7 +38,12 @@ export default function App() {
     setCurrentView(screens.roundInProgess);
   }
 
-  let content = <MainScreen changeScreen={setCurrentView} startRound={startRound} />;
+  const showStatistics = (roundObj) => {
+    setCurrentRound(roundObj);
+    setCurrentView(screens.roundStatistics);
+  }
+
+  let content = <MainScreen changeScreen={setCurrentView} startRound={startRound} showStatistics={showStatistics} />;
 
   if (currentView == screens.startEvent) {
     content = <StartScreen changeScreen={setCurrentView} startRound={startRound} />;
@@ -49,6 +55,8 @@ export default function App() {
     content = <UserScreen changeScreen={setCurrentView} />
   } else if (currentView == screens.roundInProgess) {
     content = <RoundScreen changeScreen={setCurrentView} round={currentRound} />
+  } else if (currentView == screens.roundStatistics) {
+    content = <RoundStatisticsScreen changeScreen={setCurrentView} round={currentRound} />
   }
 
   return (

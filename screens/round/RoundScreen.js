@@ -10,6 +10,7 @@ import AppButtonSuccess from '../../components/general/AppButtonSuccess';
 import colors from '../../constants/colors';
 import AppButtonDeny from '../../components/general/AppButtonDeny';
 import AbortConfirmationComponent from '../../components/round/AbortConfirmationComponent';
+import sizes from '../../constants/sizes';
 
 const RoundScreen = props => {
 
@@ -448,11 +449,11 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     targetNavigationCurrentNumber: {
-        fontSize: 25,
+        fontSize: sizes.fonts.large,
         fontWeight: 'bold'
     },
     targetNavigationNotCurrentNumber: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     targetButtonIcon: {
         height: 25,
@@ -494,7 +495,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.roundZoneSelectedBackground
     },
     pointageZonePointsTag: {
-        fontSize: 25,
+        fontSize: sizes.fonts.large,
         padding: 10
     },
     pointageOuterZoneWrapperOuter: {
@@ -511,7 +512,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     pointageZonePointsTagOuter: {
-        fontSize: 25,
+        fontSize: sizes.fonts.large,
         padding: 10
     },
     shooterOuterWrapper: {
@@ -533,7 +534,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.roundShooterSelectedBackground
     },
     shooterTag: {
-        fontSize: 25
+        fontSize: sizes.fonts.medium
     },
     shootersListWrapper: {
         padding: 10

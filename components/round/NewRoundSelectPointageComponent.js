@@ -6,6 +6,7 @@ import colors from '../../constants/colors';
 import strings from '../../constants/strings';
 import AppButton from '../general/AppButton';
 import PointageComponent from '../pointage/PointageComponent';
+import sizes from '../../constants/sizes';
 
 const NewRoundSelectPointageComponent = props => {
     return (
@@ -20,11 +21,13 @@ const NewRoundSelectPointageComponent = props => {
                     </TouchableOpacity>
                     <Text style={styles.headerText}>{strings.pointageSelectionHeader}</Text>
                 </View>
-                <ScrollView>
-                    <View style={styles.content}>
-                        {props.pointages.map(pointage => <PointageComponent onTouched={props.onSelected} key={pointage.UUID} pointageItem={pointage} />)}
-                    </View>
-                </ScrollView>
+                <View style={styles.contentWrapper}>
+                    <ScrollView>
+                        <View style={styles.content}>
+                            {props.pointages.map(pointage => <PointageComponent onTouched={props.onSelected} key={pointage.UUID} pointageItem={pointage} />)}
+                        </View>
+                    </ScrollView>
+                </View>
             </View>
         </Modal>
     );
@@ -47,14 +50,18 @@ const styles = StyleSheet.create({
         margin: 15
     },
     headerText: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         fontWeight: 'bold',
         padding: 10,
         paddingBottom: 20
     },
+    contentWrapper: {
+        paddingBottom: 20,
+        paddingBottom: 210
+    },
     content: {
-        padding: 20,
-        paddingBottom: 110
+        paddingLeft: 20,
+        paddingRight: 20
     }
 });
 

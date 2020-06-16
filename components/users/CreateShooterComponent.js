@@ -10,17 +10,22 @@ import strings from '../../constants/strings';
 import AppButton from '../general/AppButton';
 import AppButtonDeny from '../general/AppButtonDeny';
 import DataService from '../../services/DataService';
+import sizes from '../../constants/sizes';
 
 const UserFirstCreateComponent = props => {
 
     const [shooterName, setShooterName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const createShooterHandler = () => {
-        if (shooterName != '') {
+        if (shooterName.length > 2) {
+            setErrorMessage('');
             DataService.addShooters([{
                 UUID: uuid.v4(),
                 name: shooterName
             }]).then(result => props.backPress())
+        } else {
+            setErrorMessage(strings.createShooterErrorTooShort);
         }
     }
 
@@ -29,6 +34,16 @@ const UserFirstCreateComponent = props => {
             text = text.substring(0, 10);
         }
         setShooterName(text);
+    }
+
+    let errorMessageBox = <View></View>;
+
+    if (errorMessage !== '') {
+        errorMessageBox = (
+            <View style={styles.errorMessageWrapper}>
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+            </View>
+        );
     }
 
     return (
@@ -46,6 +61,7 @@ const UserFirstCreateComponent = props => {
                         />
                     </View>
                 </View>
+                {errorMessageBox}
                 <View style={styles.wrapper}>
                     <AppButton
                         title={strings.createShooterButton}
@@ -71,7 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     label: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     inputWrapper: {
         paddingBottom: 5
@@ -79,12 +95,21 @@ const styles = StyleSheet.create({
     input: {
         borderBottomColor: 'black',
         borderBottomWidth: 1,
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     wrapper: {
         padding: 5,
         paddingRight: 20,
         paddingLeft: 20
+    },
+    errorMessageWrapper: {
+        paddingBottom: 10,
+        paddingLeft: 20,
+        paddingRight: 20
+    },
+    errorMessage: {
+        fontSize: sizes.fonts.medium,
+        color: colors.errorMessage
     }
 });
 

@@ -5,6 +5,7 @@ import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
 import roundStates from '../../constants/roundStates';
+import sizes from '../../constants/sizes';
 
 const RoundListItem = props => {
 
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     },
     itemText: {
         color: colors.listItemText,
-        fontSize: 15
+        fontSize: sizes.fonts.medium
     }
 });
 

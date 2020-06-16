@@ -6,12 +6,13 @@ import uuid from 'react-native-uuid';
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 import AppButton from '../general/AppButton';
 import AppButtonDeny from '../general/AppButtonDeny';
 import DataService from '../../services/DataService';
 
-const UserFirstCreateComponent = props => {
+const DeleteShooterComponent = props => {
     
     const deleteShooterHandler = () => {
         DataService.deleteShooter(props.shooter.UUID).then(result => {
@@ -54,10 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     label: {
-        fontSize: 20
-    },
-    name: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     wrapper: {
         padding: 5,
@@ -71,9 +69,9 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     name: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         fontWeight: 'bold'
     }
 });
 
-export default UserFirstCreateComponent;
+export default DeleteShooterComponent;

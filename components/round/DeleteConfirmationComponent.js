@@ -10,6 +10,7 @@ import strings from '../../constants/strings';
 import AppButton from '../general/AppButton';
 import AppButtonDeny from '../general/AppButtonDeny';
 import DataService from '../../services/DataService';
+import sizes from '../../constants/sizes';
 
 const DeleteConfirmationComponent = props => {
     return (
@@ -41,26 +42,14 @@ const styles = StyleSheet.create({
         width: '100%',
         alignContent: 'center',
         justifyContent: 'center',
-        padding: 30
+        padding: 20
     },
     label: {
-        fontSize: 20
-    },
-    name: {
-        fontSize: 20
+        fontSize: sizes.fonts.large
     },
     wrapper: {
-        padding: 5
-    },
-    nameWrapper: {
-        padding: 10,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignContent: 'center'
-    },
-    name: {
-        fontSize: 25,
-        fontWeight: 'bold'
+        paddingTop: 5,
+        paddingBottom: 5
     }
 });
 

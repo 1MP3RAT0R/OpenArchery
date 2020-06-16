@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 import roundStates from '../../constants/roundStates';
 
 const ShooterList = props => {
@@ -100,25 +101,27 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     nanText: {
-        fontSize: 15
+        fontSize: sizes.fonts.medium,
+        color: colors.errorMessage
     },
     nanWrapper: {
-        padding: 15,
+        padding: 20,
         flexDirection: 'row',
         justifyContent: 'center',
         alignContent: "center"
     },
     shooterOuterWrapper: {
-        padding: 5
+        padding: 15
     },
     shooterWrapper: {
+        paddingLeft: 15,
         padding: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignContent: "center"
     },
     shooterName: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     removeShooter: {
         height: 20,

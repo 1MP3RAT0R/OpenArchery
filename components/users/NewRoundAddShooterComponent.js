@@ -8,6 +8,7 @@ import AppButton from '../general/AppButton';
 import ShooterListItem from '../users/ShooterListItem';
 import DataService from '../../services/DataService';
 import CreateShooterComponent from './CreateShooterComponent';
+import sizes from '../../constants/sizes';
 
 const NewRoundSelectPointageComponent = props => {
 
@@ -98,20 +99,20 @@ const styles = StyleSheet.create({
         margin: 15
     },
     headerText: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         fontWeight: 'bold',
         padding: 10,
         paddingBottom: 20
     },
     content: {
         paddingTop: 15,
-        paddingLeft: 30,
-        paddingRight: 30,
+        paddingLeft: 20,
+        paddingRight: 20,
         paddingBottom: 140
     },
     buttonWrapper: {
-        paddingLeft: 30,
-        paddingRight: 30
+        paddingLeft: 20,
+        paddingRight: 20
     }
 });
 

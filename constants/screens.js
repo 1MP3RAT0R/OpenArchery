@@ -4,5 +4,6 @@ export default {
     configurePoints: 'points-config',
     addPointage: 'add-pointage',
     userConfigs: 'user-configs',
-    roundInProgess: 'round-progress'
+    roundInProgess: 'round-progress',
+    roundStatistics: 'round-statistics'
 }

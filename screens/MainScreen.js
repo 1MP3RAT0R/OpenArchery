@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
 import strings from '../constants/strings';
 import screens from '../constants/screens';
+import sizes from '../constants/sizes';
 import AppButton from '../components/general/AppButton';
 import DataService from '../services/DataService';
 import RoundListItem from '../components/round/RoundListItem';
@@ -50,6 +51,10 @@ const MainScreen = props => {
         props.startRound(JSON.parse(JSON.stringify(round)));
     }
 
+    const changeToStatistics = (round) => {
+        props.showStatistics(JSON.parse(JSON.stringify(round)));
+    }
+
     return (
         <View style={styles.screen}>
             <UserFirstCreateComponent visibleStatus={userSet} onAdded={userAddedHandler} />
@@ -79,6 +84,7 @@ const MainScreen = props => {
                     onClose={closeRoundDetailsHandler}
                     round={currentRound}
                     onContinueRound={startRound}
+                    changeToStatistics={changeToStatistics}
                 />
                 <Text style={styles.listTitle}>{strings.mainScreenListTitle}</Text>
                 <View style={styles.roundListWrapper}>
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     listTitle: {
-        fontSize: 20,
+        fontSize: sizes.fonts.large,
         paddingLeft: 20,
         padding: 10,
         fontWeight: 'bold'

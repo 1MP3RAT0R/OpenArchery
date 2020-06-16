@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Modal, Button, ScrollView, Te
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 const PointageZoneInputField = props => {
     const [zonePoints, setZonePoints] = useState(props.zoneData.points);
@@ -29,14 +30,16 @@ const PointageZoneInputField = props => {
 const styles = StyleSheet.create({
     inputRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingBottom: 5
     },
     zoneInputTag: {
-        fontSize: 20
+        fontSize: sizes.fonts.medium
     },
     inputField: {
         borderBottomWidth: 1,
-        width: '50%'
+        width: '50%',
+        fontSize: sizes.fonts.medium
     }
 });
 

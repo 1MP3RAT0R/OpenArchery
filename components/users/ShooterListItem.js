@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 const ShooterListItem = props => {
     return (
@@ -26,11 +27,13 @@ const styles = StyleSheet.create({
         width: '100%',
         alignContent: 'center',
         padding: 15,
+        paddingLeft: 20,
         borderRadius: 3,
         backgroundColor: colors.listItemBackground
     },
     itemText: {
-        color: colors.listItemText
+        color: colors.listItemText,
+        fontSize: sizes.fonts.medium
     }
 });
 

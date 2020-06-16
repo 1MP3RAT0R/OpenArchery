@@ -7,6 +7,7 @@ export default {
             hitZones: 3,
             firstHitCounts: false,
             deletable: false,
+            targetMaxPoints: 30,
             pointage: [
                 {
                     arrow: 1,
@@ -68,6 +69,7 @@ export default {
             hitZones: 3,
             firstHitCounts: true,
             deletable: false,
+            targetMaxPoints: 20,
             pointage: [
                 {
                     arrow: 1,
@@ -129,6 +131,7 @@ export default {
             hitZones: 3,
             firstHitCounts: true,
             deletable: false,
+            targetMaxPoints: 15,
             pointage: [
                 {
                     arrow: 1,
@@ -156,6 +159,7 @@ export default {
             hitZones: 2,
             firstHitCounts: true,
             deletable: false,
+            targetMaxPoints: 20,
             pointage: [
                 {
                     arrow: 1,
@@ -205,6 +209,7 @@ export default {
             hitZones: 3,
             firstHitCounts: true,
             deletable: false,
+            targetMaxPoints: 15,
             pointage: [
                 {
                     arrow: 1,

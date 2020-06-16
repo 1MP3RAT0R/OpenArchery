@@ -10,6 +10,7 @@ import roundStates from '../../constants/roundStates';
 import AppButtonSuccess from '../general/AppButtonSuccess';
 import DataService from '../../services/DataService';
 import DeleteConfirmationComponent from './DeleteConfirmationComponent';
+import sizes from '../../constants/sizes';
 
 const RoundDetailsComponent = props => {
 
@@ -35,6 +36,11 @@ const RoundDetailsComponent = props => {
         props.onClose();
     }
 
+    const statisticsRoundButtonHadler = () => {
+        props.changeToStatistics(props.round);
+        props.onClose();
+    }
+
     let status = '';
 
     if (props.round.status == roundStates.begun) {
@@ -52,6 +58,9 @@ const RoundDetailsComponent = props => {
                 deleteRoundHandler={deleteRoundHandler}
                 backPress={hideDeleteRoundModal}
             />
+            <View style={styles.backButton}>
+                <AppButtonSuccess title={strings.showRoundStatisticsButton} onPress={() => statisticsRoundButtonHadler()} />
+            </View>
             <View style={styles.backButton}>
                 <AppButton title={strings.backButton} onPress={() => props.onClose()} />
             </View>
@@ -121,7 +130,7 @@ const RoundDetailsComponent = props => {
                         {shooterInfos = props.round.shooters.map(shooter => (
                             <View key={shooter.UUID} style={styles.item}>
                                 <Text style={styles.itemText}>{shooter.name}</Text>
-                                <Text style={styles.itemText}>{shooter.pointSum}</Text>
+                                <Text style={styles.itemText}>{shooter.pointSum}/{props.round.pointage.targetMaxPoints * props.round.targetCount}</Text>
                             </View>
                         ))}
                     </View>
@@ -141,10 +150,10 @@ const RoundDetailsComponent = props => {
 
 const styles = StyleSheet.create({
     screen: {
-        padding: 30
+        padding: 20
     },
     header: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         fontWeight: 'bold',
         paddingBottom: 20
     },
@@ -162,11 +171,11 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     itemText: {
-        fontSize: 20,
+        fontSize: sizes.fonts.medium,
         padding: 5
     },
     shootersHeader: {
-        fontSize: 25,
+        fontSize: sizes.fonts.large,
         fontWeight: 'bold',
         paddingTop: 10,
         padding: 5

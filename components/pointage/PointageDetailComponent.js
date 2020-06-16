@@ -4,16 +4,29 @@ import { StyleSheet, Text, View, TouchableOpacity, Modal, Button, ScrollView } f
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 import AppButton from '../general/AppButton';
 import AppButtonDeny from '../general/AppButtonDeny';
 import DataService from '../../services/DataService';
+import PointageConfirmDeleteComponent from './PointageConfirmDeleteComponent';
 
 const PointageDetailComponent = props => {
+
+    const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
+
+    const showConfirmDeleteModal = () => {
+        setConfirmDeleteModal(true);
+    }
+
+    const hideConfirmDeleteModal = () => {
+        setConfirmDeleteModal(false);
+    }
 
     let firstHitCountsContent = strings.allHitsCountString;
 
     const deleteCurrentItem = () => {
+        hideConfirmDeleteModal();
         DataService.deletePointage(props.currentItem.UUID);
         props.backPress();
     }
@@ -36,7 +49,7 @@ const PointageDetailComponent = props => {
                     <AppButton title={strings.closeButton} onPress={props.backPress} />
                 </View>
                 <View style={styles.buttonWrapper}>
-                    <AppButtonDeny title={strings.deleteButton} onPress={deleteCurrentItem} />
+                    <AppButtonDeny title={strings.deleteButton} onPress={showConfirmDeleteModal} />
                 </View>
             </View>);
     }
@@ -60,6 +73,12 @@ const PointageDetailComponent = props => {
     return (
         <Modal visible={props.visibleStatus} animationType='slide'>
             <ScrollView style={styles.content}>
+                <PointageConfirmDeleteComponent 
+                    visibleStatus={confirmDeleteModal}
+                    itemName={props.currentItem.name}
+                    onDelete={deleteCurrentItem}
+                    onAbort={hideConfirmDeleteModal}
+                />
                 <Text style={styles.title}>{props.currentItem.name}</Text>
                 <View style={styles.generalInfos}>
                     <View style={styles.sectionTitleWrapper}>
@@ -72,6 +91,10 @@ const PointageDetailComponent = props => {
                     <View style={styles.attributeTupel}>
                         <Text style={styles.attributeTag}>{strings.pointageZonesTag}</Text>
                         <Text style={styles.attributeTag}>{props.currentItem.hitZones}</Text>
+                    </View>
+                    <View style={styles.attributeTupel}>
+                        <Text style={styles.attributeTag}>{strings.pointageMaxPointsTag}</Text>
+                        <Text style={styles.attributeTag}>{props.currentItem.targetMaxPoints}</Text>
                     </View>
                     <Text style={styles.attributeTag}>{firstHitCountsContent}</Text>
                 </View>
@@ -94,13 +117,13 @@ const styles = StyleSheet.create({
         padding: 20
     },
     title: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         paddingBottom: 10,
         fontWeight: "bold",
         borderBottomWidth: 1
     },
     sectionTitle: {
-        fontSize: 20,
+        fontSize: sizes.fonts.large,
         fontWeight: "bold",
         padding: 10
     },
@@ -108,8 +131,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     attributeTag: {
-        fontSize: 20,
-        padding: 5
+        fontSize: sizes.fonts.medium,
+        paddingTop: 5,
+        paddingBottom: 5
     },
     buttonWrapper: {
         paddingBottom: 10
@@ -119,22 +143,24 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     arrowWrapper: {
-        padding: 5
+        paddingTop: 5,
+        paddingBottom: 5
     },
     arrowTag: {
-        padding: 5,
-        fontSize: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+        fontSize: sizes.fonts.medium,
         fontWeight: 'bold'
     },
     zoneWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignContent: 'center',
-        paddingLeft: 20
+        alignContent: 'center'
     },
     zoneTag: {
-        padding: 5,
-        fontSize: 20
+        paddingTop: 5,
+        paddingBottom: 5,
+        fontSize: sizes.fonts.medium
     },
     attributeTupel: {
         flexDirection: 'row',

@@ -4,8 +4,10 @@ import { StyleSheet, Text, View, TouchableOpacity, Modal, Button, ScrollView } f
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 import AppButton from '../general/AppButton';
+import AppButtonSuccess from '../general/AppButtonSuccess';
 import PointageInputField from './PointageInputField';
 
 const PointageDetailComponent = props => {
@@ -28,11 +30,19 @@ const PointageDetailComponent = props => {
 
     const onValueChange = (arrowObj) => {
         let newData = data;
-        newData.forEach((arrow, index) => {
-            if (arrow.arrow == arrowObj.arrow) {
-                newData[index] = arrowObj;
-            }
-        });
+        if (props.firstArrowCounts) {
+            newData.forEach((arrow, index) => {
+                if (arrow.arrow == arrowObj.arrow) {
+                    newData[index] = arrowObj;
+                }
+            });
+        } else {
+            newData.forEach((arrow, index) => {
+                let tmpArrow = arrowObj;
+                tmpArrow.arrow = arrow.arrow;
+                newData[index] = JSON.parse(JSON.stringify(tmpArrow));
+            });
+        }
         props.reportData(newData);
     }
 
@@ -44,6 +54,18 @@ const PointageDetailComponent = props => {
         props.close()
     }
 
+    let inputFields = (
+        <PointageInputField firstArrow={props.firstArrowCounts} arrowObj={data.find(dataobj => dataobj.arrow == 1)} onChange={onValueChange} />
+    );
+
+    if (props.firstArrowCounts) {
+        inputFields = props.arrowsArray.map(arrow => {
+            return (
+                <PointageInputField key={arrow} firstArrow={props.firstArrowCounts} arrowObj={data.find(dataobj => dataobj.arrow == arrow + 1)} onChange={onValueChange} />
+            );
+        });
+    }
+
     return (
         <Modal
             visible={props.visible}
@@ -51,16 +73,19 @@ const PointageDetailComponent = props => {
         >
             <View style={styles.content}>
                 <Text style={styles.pointsTitle}>{strings.addPointagePointsTitle}</Text>
+                <View style={styles.pointsExplenationWrapper}>
+                    <Text style={styles.pointsExplenationTag}>{strings.addPointageConfigureExplenation}</Text>
+                </View>
                 <ScrollView>
-                    {props.arrowsArray.map(arrow => <PointageInputField key={arrow} arrowObj={data.find(dataobj => dataobj.arrow == arrow + 1)} onChange={onValueChange} />)}
+                    {inputFields}
                     <View style={styles.saveButtonWrapper}>
-                        <AppButton title={strings.saveNewPointageButton} onPress={onSave} />
+                        <AppButtonSuccess title={strings.saveNewPointageButton} onPress={onSave} />
                     </View>
                     <View style={styles.abortButtonWrapper}>
                         <AppButton title={strings.abortButton} onPress={onAbort} />
                     </View>
                 </ScrollView>
-                
+
             </View>
 
         </Modal>
@@ -72,7 +97,7 @@ const styles = StyleSheet.create({
         padding: 20
     },
     pointsTitle: {
-        fontSize: 25,
+        fontSize: sizes.fonts.xlarge,
         fontWeight: 'bold',
         paddingBottom: 10
     },
@@ -81,6 +106,12 @@ const styles = StyleSheet.create({
     },
     abortButtonWrapper: {
         paddingBottom: 40
+    },
+    pointsExplenationWrapper: {
+        paddingBottom: 10
+    },
+    pointsExplenationTag: {
+        fontSize: sizes.fonts.medium
     }
 });
 

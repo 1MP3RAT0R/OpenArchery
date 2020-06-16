@@ -57,9 +57,13 @@ export default {
     addPointagePointsTitle: "Punkte Konfigurieren",
     arrowTitle: "Pfeil",
     zoneInputTag: "Zone",
+    pointageMaxPointsTag: "Max Punkte pro Ziel:",
     saveNewPointageButton: "Wertung speichern",
     pointageArrowsErrorMessage: "Die Anzahl der Pfeile pro Ziel muss zwischen 1 und 4 liegen.",
     pointageZonesErrorMessage: "Die Anzahl der Zonen pro Ziel muss zwischen 1 und 4 liegen.",
+    pointageNameErrorMessage: "Der Name ist zu kurz",
+    arrowAllHitCountTitle: "Punkte pro Pfeil:",
+    addPointageConfigureExplenation: "Die Punkte sollten in absteigender Reihenfolge eingetragen werden",
 
     //rounds Status
     roundStatusBegun: 'Begonnen',
@@ -89,9 +93,14 @@ export default {
     //configure shooters
     configureShootersScreenTitle: "Schützen bearbeiten",
     deleteShooterTag: "Soll der Schütze gelöscht werden?",
+    createShooterErrorTooShort: "Der Name ist zu kurz",
 
     //running round
-    abortRunningRound: "Runde abbrechen",
-    pauseRunningRound: "Runde Pausieren",
-    markRoundDoneButton: "Runde beenden"
+    abortRunningRound: "abbrechen",
+    pauseRunningRound: "Pausieren",
+    markRoundDoneButton: "Runde beenden",
+
+    //statistics
+    showRoundStatisticsButton: "Statikstiken",
+    statisticsTitle: "Statistiken"
 }

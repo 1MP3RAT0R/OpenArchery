@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import screens from '../../constants/screens';
 import colors from '../../constants/colors';
 import strings from '../../constants/strings';
+import sizes from '../../constants/sizes';
 
 const AppButtonSuccess = props => {
     return (
@@ -24,11 +25,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.buttonSuccessBackground,
         borderRadius: 2,
+        borderWidth: 2,
+        borderColor: colors.buttonSuccessHighlight,
         padding: 8
     },
     buttonText: {
         color: colors.buttonText,
-        fontSize: 15
+        fontSize: sizes.fonts.medium
     }
 });
 
