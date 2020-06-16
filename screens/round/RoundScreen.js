@@ -206,7 +206,12 @@ const RoundScreen = props => {
                 }];
                 tmpRound.shooters.find(shooter => shooter.UUID === selectedShooter).pointSum += value;
                 setShootersGeneralArray(tmpRound.shooters);
+                let completedFlag = shooterTargetComplete(JSON.parse(JSON.stringify(tmpRound.targets.find(target => target.number == currentTargetNumber).hits.find(shooter => shooter.shooter === selectedShooter).shots)));
+                tmpRound.targets.find(target => target.number == currentTargetNumber).hits.find(shooter => shooter.shooter === selectedShooter).completed = completedFlag;
                 setRoundData(JSON.parse(JSON.stringify(tmpRound)));
+                if (completedFlag) {
+                    goToNextUserOrScreen(JSON.parse(JSON.stringify(tmpRound)));
+                }
             } else {
                 let oldValue = 0;
                 let tmpShots = tmpRound.targets.find(target => target.number == currentTargetNumber).hits.find(shooter => shooter.shooter === selectedShooter).shots;
@@ -227,7 +232,12 @@ const RoundScreen = props => {
                 })
                 tmpRound.shooters.find(shooter => shooter.UUID === selectedShooter).pointSum += value;
                 setShootersGeneralArray(tmpRound.shooters);
+                let completedFlag = (shooterTargetComplete(JSON.parse(JSON.stringify(tmpRound.targets.find(target => target.number == currentTargetNumber).hits.find(shooter => shooter.shooter === selectedShooter).shots))));
+                tmpRound.targets.find(target => target.number == currentTargetNumber).hits.find(shooter => shooter.shooter === selectedShooter).completed = completedFlag;
                 setRoundData(JSON.parse(JSON.stringify(tmpRound)));
+                if (completedFlag) {
+                    goToNextUserOrScreen(JSON.parse(JSON.stringify(tmpRound)));
+                }
             }
             saveRoundData();
         }
@@ -271,7 +281,6 @@ const RoundScreen = props => {
     );
 
     if (props.round) {
-
         if (roundData.completed == roundData.targetCount) {
             headerButtons = (
                 <View style={styles.headerRow}>

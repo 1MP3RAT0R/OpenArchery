@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { LineChart, YAxis, XAxis, Grid } from 'react-native-svg-charts';
+import { BarChart, YAxis, XAxis, Grid, Line, Decorator } from 'react-native-svg-charts';
+import * as scale from 'd3-scale';
 
 import DataService from '../../services/DataService';
 
@@ -34,12 +35,15 @@ const RoundStatisticsScreen = props => {
                 for (let ts = 0; ts < targetShots.length; ts++) {
                     pointTargetSum += targetShots[ts].points;
                 }
-                tmpShooterObject.pointsData.push(pointTargetSum);
+                tmpShooterObject.pointsData.push({
+                    label: String(i + 1),
+                    value: pointTargetSum
+                });
             }
             tmpPointsChartData.push(JSON.parse(JSON.stringify(tmpShooterObject)));
         }
         setPointsChartsData(tmpPointsChartData);
-
+        console.log(JSON.stringify(tmpPointsChartData));
         setFirstRound(false);
     }
 
@@ -53,22 +57,18 @@ const RoundStatisticsScreen = props => {
                     <View key={pointsObj.shooter}>
                         <Text style={styles.shooterName}>{pointsObj.shooterName}</Text>
                         <View style={styles.pointsLineChart}>
-                            <LineChart
-                                style={{ flex: 1 }}
+                            <BarChart
+                                style={{ flex: 1, marginLeft: 8 }}
                                 data={pointsObj.pointsData}
-                                gridMin={0}
+                                horizontal={true}
+                                yAccessor={({ item }) => item.value}
+                                svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
                                 contentInset={{ top: 10, bottom: 10 }}
-                                svg={{ stroke: 'rgb(134, 65, 244)' }}
+                                spacing={0.2}
+                                gridMin={0}
                             >
-                                <Grid />
-                            </LineChart>
-                            <XAxis
-                                style={{ marginHorizontal: -10 }}
-                                data={pointsObj.pointsData}
-                                formatLabel={(value, index) => { return index + 1 }}
-                                contentInset={{ left: 10, right: 10 }}
-                                svg={{ fontSize: 10, fill: 'black' }}
-                            />
+                                <Grid direction={Grid.Direction.VERTICAL} />
+                            </BarChart>
                         </View>
                     </View>
                 ))}
@@ -105,11 +105,25 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         paddingLeft: 20
     },
+    pointsLineChartInner: {
+        height: 200,
+        flexDirection: 'row'
+    },
     pointsLineChart: {
-        
+        flexDirection: 'row',
+        height: 200,
+        paddingVertical: 16
     },
     shooterName: {
-        fontSize: sizes.fonts.large
+        fontSize: sizes.fonts.large,
+        paddingBottom: 10
+    },
+    yAxis: {
+        top: 20,
+        bottom: 20
+    },
+    xAxisWrapper: {
+        paddingLeft: 18
     }
 });
 
